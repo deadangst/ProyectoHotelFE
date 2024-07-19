@@ -1,0 +1,58 @@
+﻿@model IEnumerable<ProyectoHotelFE.Models.BitacoraModel>
+
+@{
+    ViewData["Title"] = "Reporte de Acciones del Hotel";
+}
+
+<h1>Listado de Bitácora</h1>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+@*<p>
+    <a asp-action="AbrirCrearBitacora" asp-controller="Bitacora" class="btn btn-primary">Crear Nueva Entrada</a>
+</p>*@
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Tipo de Acción</th>
+            <th>Usuario ID</th>
+            <th>Fecha de Acción</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.iD)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tipoAccion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.usuarioID)
+                </td>
+                <td>
+                    @item.fechaAccion.ToString("dd/MM/yyyy HH:mm")
+                </td>
+                @*<td>
+                    @Html.ActionLink("Editar", "AbrirEdicionBitacora", new { bitacoraID = item.iD }, new { @class = "btn btn-warning" }) |
+                    @Html.ActionLink("Eliminar", "BorrarBitacora", new { bitacoraID = item.iD }, new { @class = "btn btn-danger" })
+                </td>*@
+            </tr>
+        }
+    </tbody>
+</table>

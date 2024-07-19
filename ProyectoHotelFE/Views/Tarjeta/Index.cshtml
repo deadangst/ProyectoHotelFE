@@ -1,0 +1,66 @@
+﻿@model IEnumerable<ProyectoHotelFE.Models.TarjetaCreditoModel>
+
+@{
+    ViewData["Title"] = "Listado de Tarjetas de Crédito";
+}
+
+<h1>Listado de Tarjetas de Crédito</h1>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<p>
+    <a asp-action="AbrirCrearTarjetaCredito" asp-controller="Tarjeta" class="btn btn-primary">Crear Nueva Tarjeta de Crédito</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Usuario ID</th>
+            <th>Número de Tarjeta</th>
+            <th>Fecha de Expiración</th>
+            <th>CVV</th>
+            <th>Es Válida</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tarjetaID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.usuarioID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.numeroTarjeta)
+                </td>
+                <td>
+                    @item.fechaExpiracion.ToString("MM/yy")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.codigoSeguridad)
+                </td>
+                <td>
+                    @(item.esValida ? "Sí" : "No")
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "AbrirEdicionTarjetaCredito", new { tarjetaID = item.tarjetaID }, new { @class = "btn btn-warning" }) |
+                    @Html.ActionLink("Eliminar", "BorrarTarjetaCredito", new { tarjetaID = item.tarjetaID }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

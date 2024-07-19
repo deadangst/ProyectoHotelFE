@@ -7,12 +7,16 @@ namespace ProyectoHotelFE.Models
     {
         #region Propiedades
 
+        [Display(Name = "ID")]
         public string iD { get; set; }
         [Required]
+        [Display(Name = "Tipo de Acción")]
         public string tipoAccion { get; set; }
         [Required]
+        [Display(Name = "Usuario ID")]
         public int usuarioID { get; set; }
         [Required]
+        [Display(Name = "Fecha de Acción")]
         public DateTime fechaAccion { get; set; }
 
         #endregion

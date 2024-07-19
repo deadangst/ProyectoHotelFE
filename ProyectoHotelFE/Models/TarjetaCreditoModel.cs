@@ -9,15 +9,20 @@ namespace ProyectoHotelFE.Models
 
         public int tarjetaID { get; set; }
         [Required]
+        [Display(Name = "Usuario ID")]
         public int usuarioID { get; set; }
         [Required]
         [CreditCard]
+        [Display(Name = "Número de Tarjeta")]
         public string numeroTarjeta { get; set; }
         [Required]
+        [Display(Name = "Fecha de Expiración")]
         public DateTime fechaExpiracion { get; set; }
         [Required]
+        [Display(Name = "CVV")]
         public string codigoSeguridad { get; set; }
         [Required]
+        [Display(Name = "Es Válida")]
         public bool esValida { get; set; }
 
         #endregion
