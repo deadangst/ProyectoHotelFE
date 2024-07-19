@@ -1,0 +1,62 @@
+﻿@model IEnumerable<ProyectoHotelFE.Models.HabitacionModel>
+
+@{
+    ViewData["Title"] = "Listado de Habitaciones";
+}
+
+<h1>Listado de Habitaciones</h1>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<p>
+    <a asp-action="AbrirCrearHabitacion" asp-controller="Habitacion" class="btn btn-primary">Crear Nueva Habitación</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Habitación #</th>
+            <th>Tipo</th>
+            <th>Capacidad</th>
+            <th>Precio</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.habitacionID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.numeroHabitacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tipoHabitacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.capacidad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.precio)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "AbrirEdicionHabitacion", new { habitacionID = item.habitacionID }, new { @class = "btn btn-warning" }) |
+                    @Html.ActionLink("Eliminar", "BorrarHabitacion", new { habitacionID = item.habitacionID }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,57 @@
+﻿@model IEnumerable<ProyectoHotelFE.Models.UsuarioModel>
+
+@{
+    ViewData["Title"] = "Listado de Usuarios";
+}
+
+<h1>Listado de Usuarios</h1>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<p>
+    <a asp-action="AbrirCrearUsuario" asp-controller="Hotel" class="btn btn-primary">Crear Nuevo Usuario</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Email</th>
+            <th>Teléfono</th>
+            <th>Tipo de Usuario</th>
+            <th>Contraseña</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.usuarioID)</td>
+            <td>@Html.DisplayFor(modelItem => item.nombre)</td>
+            <td>@Html.DisplayFor(modelItem => item.apellido)</td>
+            <td>@Html.DisplayFor(modelItem => item.email)</td>
+            <td>@Html.DisplayFor(modelItem => item.telefono)</td>
+            <td>@Html.DisplayFor(modelItem => item.tipoUsuarioID)</td>
+            <td>********</td>
+            @*<td>@Html.DisplayFor(modelItem => item.passwordHash)</td>*@
+            <td>
+                @Html.ActionLink("Editar", "AbrirEdicionUsuario", new { usuarioID = item.usuarioID }, new { @class = "btn btn-warning" }) |
+                @Html.ActionLink("Eliminar", "BorrarUsuario", new { usuarioID = item.usuarioID }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

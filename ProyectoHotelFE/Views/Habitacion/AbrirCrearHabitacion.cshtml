@@ -1,0 +1,53 @@
+﻿@model ProyectoHotelFE.Models.HabitacionModel
+
+@{
+    ViewData["Title"] = "AbrirCrearHabitacion";
+}
+
+<h1>Crear Nueva Habitación</h1>
+
+<h4>Ingrese la información de la habitación:</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="GuardarHabitacion" asp-controller="Habitacion">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @*<div class="form-group">
+                <label asp-for="habitacionID" class="control-label">ID de Habitación:</label>
+                <input asp-for="habitacionID" class="form-control" />
+                <span asp-validation-for="habitacionID" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="numeroHabitacion" class="control-label">Número de Habitación:</label>
+                <input asp-for="numeroHabitacion" class="form-control" />
+                <span asp-validation-for="numeroHabitacion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="tipoHabitacion" class="control-label">Tipo de Habitación:</label>
+                <select asp-for="tipoHabitacion" class="form-control" asp-items="ViewBag.TipoHabitaciones"></select>
+                <span asp-validation-for="tipoHabitacion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="capacidad" class="control-label">Capacidad:</label>
+                <input asp-for="capacidad" class="form-control" />
+                <span asp-validation-for="capacidad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="precio" class="control-label">Precio:</label>
+                <input asp-for="precio" class="form-control" />
+                <span asp-validation-for="precio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Crear" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" asp-controller="Habitacion">Regresar a la lista</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
