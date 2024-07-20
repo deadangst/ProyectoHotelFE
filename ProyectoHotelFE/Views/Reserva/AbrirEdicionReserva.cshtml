@@ -1,0 +1,68 @@
+﻿@model ProyectoHotelFE.Models.ReservaModel
+
+@{
+    ViewData["Title"] = "Abrir Edición Reserva";
+}
+
+<h1>Modificación de una Reserva</h1>
+
+<h4>Ingrese la información por actualizar:</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditarReserva" asp-controller="Reserva" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">ID Reserva:</label>
+                <input type="text" asp-for="reservaID" readonly="readonly" class="form-control" />
+                <span asp-validation-for="reservaID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="habitacionID" class="control-label">ID de la Habitación:</label>
+                <input asp-for="habitacionID" class="form-control" />
+                <span asp-validation-for="habitacionID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="usuarioID" class="control-label">ID del Usuario:</label>
+                <input asp-for="usuarioID" class="form-control" />
+                <span asp-validation-for="usuarioID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="tarjetaID" class="control-label">ID de la Tarjeta:</label>
+                <input asp-for="tarjetaID" class="form-control" />
+                <span asp-validation-for="tarjetaID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="fechaInicio" class="control-label">Fecha de Inicio:</label>
+                <input asp-for="fechaInicio" type="date" class="form-control" />
+                <span asp-validation-for="fechaInicio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="fechaFin" class="control-label">Fecha de Fin:</label>
+                <input asp-for="fechaFin" type="date" class="form-control" />
+                <span asp-validation-for="fechaFin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="montoTotal" class="control-label">Monto Total:</label>
+                <input asp-for="montoTotal" class="form-control" />
+                <span asp-validation-for="montoTotal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="estadoID" class="control-label">Estado:</label>
+                <input asp-for="estadoID" class="form-control" />
+                <span asp-validation-for="estadoID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" asp-controller="Reserva">Regresar a listado de reservas</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

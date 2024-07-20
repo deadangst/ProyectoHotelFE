@@ -1,0 +1,58 @@
+﻿@model IEnumerable<ProyectoHotelFE.Models.ReservaModel>
+
+@{
+    ViewData["Title"] = "Listado de Reservas";
+}
+
+<h1>Listado de Reservas</h1>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<p>
+    <a asp-action="AbrirCrearReserva" asp-controller="Reserva" class="btn btn-primary">Crear Nueva Reserva</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Habitación</th>
+            <th>Usuario</th>
+            <th>Tarjeta</th>
+            <th>Fecha Inicio</th>
+            <th>Fecha Fin</th>
+            <th>Monto Total</th>
+            <th>Estado</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.reservaID)</td>
+                <td>@Html.DisplayFor(modelItem => item.habitacionID)</td>
+                <td>@Html.DisplayFor(modelItem => item.usuarioID)</td>
+                <td>@Html.DisplayFor(modelItem => item.tarjetaID)</td>
+                <td>@Html.DisplayFor(modelItem => item.fechaInicio)</td>
+                <td>@Html.DisplayFor(modelItem => item.fechaFin)</td>
+                <td>@Html.DisplayFor(modelItem => item.montoTotal)</td>
+                <td>@Html.DisplayFor(modelItem => item.estadoID)</td>
+                <td>
+                    @Html.ActionLink("Editar", "AbrirEdicionReserva", new { reservaID = item.reservaID }, new { @class = "btn btn-warning" }) |
+                    @Html.ActionLink("Eliminar", "BorrarReserva", new { reservaID = item.reservaID }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

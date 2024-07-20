@@ -3,6 +3,7 @@ using ProyectoHotelFE.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ProyectoHotelFE.Controllers
 {
@@ -17,6 +18,12 @@ namespace ProyectoHotelFE.Controllers
 
         public IActionResult AbrirCrearPago()
         {
+            ViewBag.MetodosPago = new List<SelectListItem>
+            {
+                new SelectListItem { Value = "1", Text = "Tarjeta de Crédito" },
+                new SelectListItem { Value = "2", Text = "Efectivo" },
+                new SelectListItem { Value = "3", Text = "Transferencia" }
+            };
             return View();
         }
 
@@ -26,6 +33,12 @@ namespace ProyectoHotelFE.Controllers
             GestorConexionApis objgestor = new GestorConexionApis();
             List<PagoModel> lstresultado = await objgestor.ListarPagos();
             PagoModel encontrado = lstresultado.FirstOrDefault(p => p.pagoID == pagoID);
+            ViewBag.MetodosPago = new List<SelectListItem>
+            {
+                new SelectListItem { Value = "1", Text = "Tarjeta de Crédito" },
+                new SelectListItem { Value = "2", Text = "Efectivo" },
+                new SelectListItem { Value = "3", Text = "Transferencia" }
+            };
             return View(encontrado);
         }
 

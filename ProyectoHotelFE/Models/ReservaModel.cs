@@ -7,21 +7,29 @@ namespace ProyectoHotelFE.Models
     {
         #region Propiedades
 
+        [Display(Name = "ID")]
         public int reservaID { get; set; }
         [Required]
+        [Display(Name = "Habitación #")]
         public int habitacionID { get; set; }
         [Required]
+        [Display(Name = "Usuario")]
         public int usuarioID { get; set; }
         [Required]
+        [Display(Name = "ID de Tarjeta")]
         public int tarjetaID { get; set; }
         [Required]
+        [Display(Name = "Fecha Inicio")]
         public DateTime fechaInicio { get; set; }
         [Required]
+        [Display(Name = "Fecha Fin")]
         public DateTime fechaFin { get; set; }
         [Required]
+        [Display(Name = "Monto Total")]
         [Range(0.01, double.MaxValue, ErrorMessage = "El monto total debe ser mayor a 0.")]
         public decimal montoTotal { get; set; }
         [Required]
+        [Display(Name = "Estado")]
         public int estadoID { get; set; }
 
         #endregion

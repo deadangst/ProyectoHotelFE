@@ -1,0 +1,58 @@
+﻿@model ProyectoHotelFE.Models.TarjetaCreditoModel
+
+@{
+    ViewData["Title"] = "Abrir Crear Tarjeta de Crédito";
+}
+
+<h1>Registrar Nueva Tarjeta de Crédito</h1>
+
+<h4>Ingrese la siguiente información:</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="GuardarTarjetaCredito" asp-controller="Tarjeta" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">ID Tarjeta:</label>
+                <input type="text" asp-for="tarjetaID" readonly="readonly" class="form-control" />
+                <span asp-validation-for="tarjetaID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="usuarioID" class="control-label">ID Usuario:</label>
+                <input asp-for="usuarioID" class="form-control" />
+                <span asp-validation-for="usuarioID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="numeroTarjeta" class="control-label">Número de Tarjeta:</label>
+                <input asp-for="numeroTarjeta" class="form-control" />
+                <span asp-validation-for="numeroTarjeta" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="fechaExpiracion" class="control-label">Fecha de Expiración:</label>
+                <input asp-for="fechaExpiracion" class="form-control" type="month" />
+                <span asp-validation-for="fechaExpiracion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="codigoSeguridad" class="control-label">Código de Seguridad:</label>
+                <input asp-for="codigoSeguridad" class="form-control" />
+                <span asp-validation-for="codigoSeguridad" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="esValida" /> @Html.DisplayNameFor(model => model.esValida)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" asp-controller="Tarjeta">Regresar a listado de tarjetas</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

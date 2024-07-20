@@ -1,0 +1,52 @@
+﻿@model IEnumerable<ProyectoHotelFE.Models.PagoModel>
+
+@{
+    ViewData["Title"] = "Listado de Pagos";
+}
+
+<h1>Listado de Pagos</h1>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<p>
+    <a asp-action="AbrirCrearPago" asp-controller="Pago" class="btn btn-primary">Crear Nuevo Pago</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Reserva ID</th>
+            <th>Monto</th>
+            <th>Fecha de Pago</th>
+            <th>Método de Pago</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.pagoID)</td>
+                <td>@Html.DisplayFor(modelItem => item.reservaID)</td>
+                <td>@Html.DisplayFor(modelItem => item.monto)</td>
+                <td>@Html.DisplayFor(modelItem => item.fechaPago)</td>
+                <td>@Html.DisplayFor(modelItem => item.metodoPagoID)</td>
+                <td>
+                    @Html.ActionLink("Editar", "AbrirEdicionPago", new { pagoID = item.pagoID }, new { @class = "btn btn-warning" }) |
+                    @Html.ActionLink("Eliminar", "BorrarPago", new { pagoID = item.pagoID }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
