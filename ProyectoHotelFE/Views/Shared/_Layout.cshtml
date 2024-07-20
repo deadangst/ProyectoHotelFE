@@ -1,11 +1,16 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - ProyectoHotelFE</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <meta charset="utf-8" /> <!-- Establece la codificación de caracteres a UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!-- Configura el viewport para mejorar la presentación en dispositivos móviles -->
+    <title>@ViewData["Title"] - ProyectoHotelFE</title> <!-- Define el título de la página usando ViewData -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> <!-- Incluye el archivo CSS de Bootstrap -->
+    <link rel="stylesheet" href="~/css/site.css" /> <!-- Incluye el archivo CSS personalizado -->
+    <link rel="stylesheet" href="~/lib/jquery-ui-1.12.1/jquery-ui.min.css" /> <!-- Incluye el archivo CSS de jQuery UI -->
+    <link rel="stylesheet" href="~/lib/DataTables/datatables.min.css" /> <!-- Incluye el archivo CSS de DataTables -->
+    <link rel="stylesheet" href="~/lib/toastr/toastr.min.css" /> <!-- Incluye el archivo CSS de Toastr para notificaciones -->
+    <link rel="stylesheet" href="~/lib/sweetalert/sweetalert.css" /> <!-- Incluye el archivo CSS de SweetAlert para alertas -->
+    <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css" /> <!-- Incluye el archivo CSS de FontAwesome para íconos -->
 </head>
 <body>
     <header>
@@ -44,8 +49,8 @@
     <div class="container">
         <div id="alert-container"></div> <!-- Aquí se mostrarán las alertas -->
         <main role="main" class="pb-3">
-            @RenderBody()
-            @RenderSection("MainContent", required: false)
+            @RenderBody() <!-- Renderiza el cuerpo del contenido principal -->
+            @RenderSection("MainContent", required: false) <!-- Renderiza una sección opcional llamada "MainContent" -->
         </main>
     </div>
 
@@ -54,22 +59,27 @@
             &copy; 2024 - Steven Vega - <a asp-area="" asp-controller="Home" asp-action="About">Sobre el Proyecto</a>
         </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @RenderSection("Scripts", required: false)
+    <script src="~/lib/jquery/dist/jquery.min.js"></script> <!-- Incluye el archivo JavaScript de jQuery -->
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script> <!-- Incluye el archivo JavaScript de Bootstrap -->
+    <script src="~/lib/jquery-ui-1.12.1/jquery-ui.min.js"></script> <!-- Incluye el archivo JavaScript de jQuery UI -->
+    <script src="~/lib/DataTables/datatables.min.js"></script> <!-- Incluye el archivo JavaScript de DataTables -->
+    <script src="~/lib/toastr/toastr.min.js"></script> <!-- Incluye el archivo JavaScript de Toastr para notificaciones -->
+    <script src="~/lib/sweetalert/sweetalert.min.js"></script> <!-- Incluye el archivo JavaScript de SweetAlert para alertas -->
+    <script src="~/lib/marioizquierdo-jquery.serializeJSON/jquery.serializejson.min.js"></script> <!-- Incluye el archivo JavaScript de serializeJSON para formularios -->
+    <script src="~/js/site.js" asp-append-version="true"></script> <!-- Incluye el archivo JavaScript personalizado y añade la versión para el cache-busting -->
+    @RenderSection("Scripts", required: false) <!-- Renderiza una sección opcional llamada "Scripts" -->
 
     <script type="text/javascript">
         $(document).ready(function () {
-            var successMessage = '@TempData["SuccessMessage"]';
-            var errorMessage = '@TempData["ErrorMessage"]';
+            var successMessage = '@TempData["SuccessMessage"]';  <!-- Obtiene el mensaje de éxito de TempData -->
+            var errorMessage = '@TempData["ErrorMessage"]'; <!-- Obtiene el mensaje de error de TempData -->
 
             if (successMessage) {
-                $('#alert-container').html('<div class="alert alert-success">' + successMessage + '</div>');
+                $('#alert-container').html('<div class="alert alert-success">' + successMessage + '</div>'); <!-- Muestra un mensaje de éxito en el contenedor de alertas -->
             }
 
             if (errorMessage) {
-                $('#alert-container').html('<div class="alert alert-danger">' + errorMessage + '</div>');
+                $('#alert-container').html('<div class="alert alert-danger">' + errorMessage + '</div>'); <!-- Muestra un mensaje de error en el contenedor de alertas -->
             }
         });
     </script>
