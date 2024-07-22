@@ -3,6 +3,8 @@ using ProyectoHotelFE.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 
 namespace ProyectoHotelFE.Controllers
 {
@@ -18,6 +20,18 @@ namespace ProyectoHotelFE.Controllers
         public IActionResult AbrirCrearReserva()
         {
             return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> FiltrarListaReserva(DateTime? fechaInicioBuscar)
+        {
+            GestorConexionApis objgestor = new GestorConexionApis();
+            List<ReservaModel> listaReserva = await objgestor.ListarReservas();
+
+            if (fechaInicioBuscar.HasValue)
+                listaReserva = listaReserva.Where(item => item.fechaInicio.Date == fechaInicioBuscar.Value.Date).ToList();
+
+            return View("Index", listaReserva);
         }
 
         [HttpGet]

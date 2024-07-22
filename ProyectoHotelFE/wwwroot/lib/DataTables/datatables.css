@@ -109,11 +109,11 @@ table.dataTable thead .sorting_desc_disabled:after {
 }
 table.dataTable thead .sorting:after {
   opacity: 0.2;
-  content: "\e150";
+  /*content: "\e150";*/
   /* sort */
 }
 table.dataTable thead .sorting_asc:after {
-  content: "\e155";
+  /*content: "\e155";*/
   /* sort-by-attributes */
 }
 table.dataTable thead .sorting_desc:after {

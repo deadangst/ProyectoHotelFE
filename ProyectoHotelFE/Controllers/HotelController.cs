@@ -31,6 +31,18 @@ namespace ProyectoHotelFE.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> FiltrarListaUsuarios(string UsuarioBuscar)
+        {
+            GestorConexionApis objgestor = new GestorConexionApis();
+            List<UsuarioModel> listausuario = await objgestor.ListarUsuarios();
+
+            if (!string.IsNullOrEmpty(UsuarioBuscar))
+                listausuario = listausuario.FindAll(item => item.nombre.Contains(UsuarioBuscar)).ToList();
+
+            return View("Index", listausuario);
+        }
+
+        [HttpGet]
         public async Task<IActionResult> AbrirEdicionUsuario(int usuarioID)
         {
             GestorConexionApis objgestor = new GestorConexionApis();

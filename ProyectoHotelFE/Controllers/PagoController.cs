@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProyectoHotelFE.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -88,6 +89,18 @@ namespace ProyectoHotelFE.Controllers
                 TempData["ErrorMessage"] = "Error al eliminar el pago.";
             }
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> FiltrarListaPago(DateTime? fechaPagoBuscar)
+        {
+            GestorConexionApis objgestor = new GestorConexionApis();
+            List<PagoModel> listaPago = await objgestor.ListarPagos();
+
+            if (fechaPagoBuscar.HasValue)
+                listaPago = listaPago.Where(item => item.fechaPago.Date == fechaPagoBuscar.Value.Date).ToList();
+
+            return View("Index", listaPago);
         }
     }
 }
