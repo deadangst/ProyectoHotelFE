@@ -79,7 +79,7 @@
                                                 <a asp-action="AbrirEdicionUsuario" asp-route-usuarioID="@item.usuarioID" class="btn btn-default btn-xs">
                                                     <i class="fa fa-pencil"></i>
                                                 </a>
-                                                <a asp-action="BorrarUsuario" asp-route-usuarioID="@item.usuarioID" class="btn btn-danger btn-xs" style="margin-left:2px">
+                                                <a href="javascript:void(0);" onclick="confirmarEliminacion('@Url.Action("BorrarUsuario", new { usuarioID = item.usuarioID })')" class="btn btn-danger btn-xs" style="margin-left:2px">
                                                     <i class="fa fa-trash"></i>
                                                 </a>
                                             </td>
@@ -89,26 +89,6 @@
                             </table>
                         </div>
                     </div>
-                    <!--<div class="row mt-3">
-                        <div class="col-sm-5">
-                            <div class="dataTables_info" id="usuariosTable_info" role="status" aria-live="polite"></div>--> <!-- Información de paginación -->
-                        <!--</div>
-                        <div class="col-sm-7 text-right">
-                            <div class="dataTables_paginate paging_simple_numbers" id="usuariosTable_paginate">
-                                <ul class="pagination">
-                                    <li class="paginate_button previous" id="usuariosTable_previous">
-                                        <button class="btn btn-primary" aria-controls="usuariosTable" data-dt-idx="0" tabindex="0">Anterior</button>
-                                    </li>
-                                    <li class="paginate_button active">
-                                        <a href="#" aria-controls="usuariosTable" data-dt-idx="1" tabindex="0">1</a>
-                                    </li>
-                                    <li class="paginate_button next" id="usuariosTable_next">
-                                        <button class="btn btn-primary" aria-controls="usuariosTable" data-dt-idx="2" tabindex="0">Siguiente</button>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>-->
                 </div>
             </div>
         </div>
@@ -117,10 +97,9 @@
 
 @section Scripts {
     @await Html.PartialAsync("_ValidationScriptsPartial")
-    @*<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css"></script>*@
     <link href="https://cdn.datatables.net/v/dt/dt-2.1.0/datatables.min.css" rel="stylesheet">
     <script src="https://cdn.datatables.net/v/dt/dt-2.1.0/datatables.min.js"></script>
+    <script src="~/js/scripts.js"></script> <!-- Ruta del archivo scripts.js con el mensaje compartido de borrado -->
     <script>
         $(document).ready(function () {
             $('#usuariosTable').DataTable({

@@ -62,7 +62,7 @@
                                                 <a asp-action="AbrirEdicionTarjetaCredito" asp-route-tarjetaID="@item.tarjetaID" class="btn btn-default btn-xs">
                                                     <i class="fa fa-pencil"></i>
                                                 </a>
-                                                <a asp-action="BorrarTarjetaCredito" asp-route-tarjetaID="@item.tarjetaID" class="btn btn-danger btn-xs" style="margin-left:2px">
+                                                <a href="javascript:void(0);" onclick="confirmarEliminacion('@Url.Action("BorrarTarjetaCredito", new { tarjetaID = item.tarjetaID })')" class="btn btn-danger btn-xs" style="margin-left:2px">
                                                     <i class="fa fa-trash"></i>
                                                 </a>
                                             </td>
@@ -82,6 +82,7 @@
     @await Html.PartialAsync("_ValidationScriptsPartial")
     <link href="https://cdn.datatables.net/v/dt/dt-2.1.0/datatables.min.css" rel="stylesheet">
     <script src="https://cdn.datatables.net/v/dt/dt-2.1.0/datatables.min.js"></script>
+    <script src="~/js/scripts.js"></script> <!-- Ruta del archivo scripts.js con el mensaje compartido de borrado -->
     <script>
         $(document).ready(function () {
             $('#tarjetasTable').DataTable({
