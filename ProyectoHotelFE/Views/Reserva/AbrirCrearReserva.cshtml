@@ -4,59 +4,88 @@
     ViewData["Title"] = "Abrir Crear Reserva";
 }
 
-<h1>Registrar Nueva Reserva</h1>
-
-<h4>Ingrese la siguiente información:</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="GuardarReserva" asp-controller="Reserva" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="habitacionID" class="control-label">ID de la Habitación:</label>
-                <input asp-for="habitacionID" class="form-control" />
-                <span asp-validation-for="habitacionID" class="text-danger"></span>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+    <link rel="stylesheet" href="~/css/agregar_editar.css" />
+    <title>Registrar Nueva Reserva</title>
+</head>
+<body>
+    <h1>Registrar Nueva Reserva</h1>
+    <hr />
+    <div class="login-box">
+        <div class="login-box-body">
+            <p class="login-box-msg"><b>Ingrese la siguiente información</b></p>
+            <form asp-action="GuardarReserva" asp-controller="Reserva" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group has-feedback">
+                    <label asp-for="habitacionID" class="control-label"></label>
+                    <input asp-for="habitacionID" class="form-control" placeholder="ID de la Habitación" />
+                    <span class="glyphicon glyphicon-tag form-control-feedback"></span>
+                    <span asp-validation-for="habitacionID" class="text-danger"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <label asp-for="usuarioID" class="control-label"></label>
+                    <input asp-for="usuarioID" class="form-control" placeholder="ID del Usuario" />
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                    <span asp-validation-for="usuarioID" class="text-danger"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <label asp-for="tarjetaID" class="control-label"></label>
+                    <input asp-for="tarjetaID" class="form-control" placeholder="ID de la Tarjeta" />
+                    <span class="glyphicon glyphicon-credit-card form-control-feedback"></span>
+                    <span asp-validation-for="tarjetaID" class="text-danger"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <label asp-for="fechaInicio" class="control-label"></label>
+                    <input asp-for="fechaInicio" type="date" class="form-control" />
+                    <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
+                    <span asp-validation-for="fechaInicio" class="text-danger"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <label asp-for="fechaFin" class="control-label"></label>
+                    <input asp-for="fechaFin" type="date" class="form-control" />
+                    <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
+                    <span asp-validation-for="fechaFin" class="text-danger"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <label asp-for="montoTotal" class="control-label"></label>
+                    <input asp-for="montoTotal" class="form-control" placeholder="Monto Total" />
+                    <span class="glyphicon glyphicon-usd form-control-feedback"></span>
+                    <span asp-validation-for="montoTotal" class="text-danger"></span>
+                </div>
+                <input type="hidden" asp-for="estadoID" value="1" />
+                <div class="row justify-content-center">
+                    <div class="col-xs-12 text-center">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">Crear</button>
+                    </div>
+                </div>
+            </form>
+            <div class="text-center mt-3">
+                <a asp-action="Index" asp-controller="Reserva" class="text-center">Regresar a listado de reservas</a>
             </div>
-            <div class="form-group">
-                <label asp-for="usuarioID" class="control-label">ID del Usuario:</label>
-                <input asp-for="usuarioID" class="form-control" />
-                <span asp-validation-for="usuarioID" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="tarjetaID" class="control-label">ID de la Tarjeta:</label>
-                <input asp-for="tarjetaID" class="form-control" />
-                <span asp-validation-for="tarjetaID" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="fechaInicio" class="control-label">Fecha de Inicio:</label>
-                <input asp-for="fechaInicio" type="date" class="form-control" />
-                <span asp-validation-for="fechaInicio" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="fechaFin" class="control-label">Fecha de Fin:</label>
-                <input asp-for="fechaFin" type="date" class="form-control" />
-                <span asp-validation-for="fechaFin" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="montoTotal" class="control-label">Monto Total:</label>
-                <input asp-for="montoTotal" class="form-control" />
-                <span asp-validation-for="montoTotal" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="estadoID" class="control-label">Estado:</label>
-                <input asp-for="estadoID" class="form-control" />
-                <span asp-validation-for="estadoID" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Crear" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
+        <!-- /.login-box-body -->
     </div>
-</div>
+    <!-- /.login-box -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    <script src="~/js/agregarusuario.js"></script>
+    <script>
+    $(document).ready(function () {
+        var successMessage = '@TempData["SuccessMessage"]';
+        var errorMessage = '@TempData["ErrorMessage"]';
 
-<div>
-    <a asp-action="Index" asp-controller="Reserva">Regresar a listado de reservas</a>
-</div>
+        mostrarMensajeUsuarioAgregado(successMessage, errorMessage);
+    });
+    </script>
+</body>
+</html>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

@@ -50,53 +50,33 @@
                                         <th>Tipo de Acción</th>
                                         <th>Usuario ID</th>
                                         <th>Fecha de Acción</th>
-                                        <th>Acciones</th>
+                                        @*<th>Acciones</th>*@
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach (var item in Model)
                                     {
                                         <tr>
-                                            <td>@Html.DisplayFor(modelItem => item.iD)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.id)</td>
                                             <td>@Html.DisplayFor(modelItem => item.tipoAccion)</td>
                                             <td>@Html.DisplayFor(modelItem => item.usuarioID)</td>
                                             <td>@String.Format("{0:dd/MM/yyyy HH:mm}", item.fechaAccion)</td>
-                                            <td>
+                                            <!--<td>-->
                                                 <!-- Opciones de edición y eliminación si son necesarias en el futuro -->
-                                                @* <a asp-action="AbrirEdicionBitacora" asp-route-bitacoraID="@item.iD" class="btn btn-default btn-xs">
+                                                 <!--<a asp-action="AbrirEdicionBitacora" asp-route-bitacoraID="@item.id" class="btn btn-default btn-xs">
                                                         <i class="fa fa-pencil"></i>
                                                     </a>
-                                                    <a asp-action="BorrarBitacora" asp-route-bitacoraID="@item.iD" class="btn btn-danger btn-xs" style="margin-left:2px">
+                                                    <a asp-action="BorrarBitacora" asp-route-bitacoraID="@item.id" class="btn btn-danger btn-xs" style="margin-left:2px">
                                                         <i class="fa fa-trash"></i>
-                                                    </a> *@
-                                            </td>
+                                                    </a> 
+                                            </td>-->
                                         </tr>
                                     }
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                    <!--<div class="row mt-3">
-                        <div class="col-sm-5">
-                            <div class="dataTables_info" id="bitacoraTable_info" role="status" aria-live="polite"></div>-->
-                    <!-- Información de paginación -->
-                    <!--</div>
-                        <div class="col-sm-7 text-right">
-                            <div class="dataTables_paginate paging_simple_numbers" id="bitacoraTable_paginate">
-                                <ul class="pagination">
-                                    <li class="paginate_button previous" id="bitacoraTable_previous">
-                                        <button class="btn btn-primary" aria-controls="bitacoraTable" data-dt-idx="0" tabindex="0">Anterior</button>
-                                    </li>
-                                    <li class="paginate_button active">
-                                        <a href="#" aria-controls="bitacoraTable" data-dt-idx="1" tabindex="0">1</a>
-                                    </li>
-                                    <li class="paginate_button next" id="bitacoraTable_next">
-                                        <button class="btn btn-primary" aria-controls="bitacoraTable" data-dt-idx="2" tabindex="0">Siguiente</button>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>-->
+
                 </div>
             </div>
         </div>

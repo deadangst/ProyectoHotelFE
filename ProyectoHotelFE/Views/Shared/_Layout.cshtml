@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" /> <!-- Establece la codificación de caracteres a UTF-8 -->
@@ -100,16 +101,27 @@
         <!-- Barra de navegación superior -->
         <button class="toggle-btn" onclick="toggleSidebar()">&#9776;</button> <!-- Botón para mostrar/ocultar el menú lateral -->
         <a class="navbar-brand" asp-controller="Home" asp-action="Index">Hotel Steve</a> <!-- Nombre del hotel -->
+        <div class="collapse navbar-collapse justify-content-end">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Autenticacion" asp-action="CerrarSesion">Cerrar sesión</a>
+                </li>
+            </ul>
+        </div>
     </nav>
     <div class="sidebar" id="sidebar">
         <!-- Contenedor del menú de navegación lateral -->
         <h2>Navegación Principal</h2> <!-- Título del menú de navegación lateral -->
-        <a asp-area="" asp-controller="Habitacion" asp-action="Index"><i class="fa fa-bed"></i> Gestion Habitaciones</a> <!-- Enlace a la gestión de habitaciones -->
-        <a asp-area="" asp-controller="Hotel" asp-action="Index"><i class="fa fa-users"></i> Gestion Usuarios</a> <!-- Enlace a la gestión de usuarios -->
+        @if (User.IsInRole("SuperUsuario") || (User.IsInRole("Administrador")) || (User.IsInRole("Recepcionista")))
+        {
+            <a asp-area="" asp-controller="Habitacion" asp-action="Index"><i class="fa fa-bed"></i> Gestion Habitaciones</a> <!-- Enlace a la gestión de habitaciones -->
+            <a asp-area="" asp-controller="Hotel" asp-action="Index"><i class="fa fa-users"></i> Gestion Usuarios</a> <!-- Enlace a la gestión de usuarios -->
+            <a asp-area="" asp-controller="Bitacora" asp-action="Index"><i class="fa fa-book"></i> Ver Bitácora</a><!-- Enlace a la Revisión de la Bitacora -->
+        }
+
         <a asp-area="" asp-controller="Reserva" asp-action="Index"><i class="fa fa-calendar"></i> Gestion Reservas</a> <!-- Enlace a la gestión de reservas -->
         <a asp-area="" asp-controller="Pago" asp-action="Index"><i class="fa fa-credit-card"></i> Gestion Pagos</a> <!-- Enlace a la gestión de pagos -->
         <a asp-area="" asp-controller="Tarjeta" asp-action="Index"><i class="fa fa-id-card"></i> Gestion Tarjetas</a> <!-- Enlace a la gestión de tarjetas -->
-        <a asp-area="" asp-controller="Bitacora" asp-action="Index"><i class="fa fa-book"></i> Ver Bitácora</a> <!-- Enlace a la bitácora -->
     </div>
     <div class="main-content" id="main-content">
         <!-- Contenedor del contenido principal -->
@@ -145,7 +157,7 @@
             mainContent.classList.toggle("full-width");
         }
 
-        $(document).ready(function () {
+        @*$(document).ready(function () {
             var successMessage = '@TempData["SuccessMessage"]'; <!-- Obtiene el mensaje de éxito de TempData -->
             var errorMessage = '@TempData["ErrorMessage"]'; <!-- Obtiene el mensaje de error de TempData -->
 
@@ -156,7 +168,7 @@
             if (errorMessage) {
                 $('#alert-container').html('<div class="alert alert-danger">' + errorMessage + '</div>'); <!-- Muestra un mensaje de error en el contenedor de alertas -->
             }
-        });
+        });*@
     </script>
 </body>
 </html>

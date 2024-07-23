@@ -1,52 +1,77 @@
 ﻿@model ProyectoHotelFE.Models.HabitacionModel
 
 @{
-    ViewData["Title"] = "AbrirEdicionHabitacion";
+    ViewData["Title"] = "Abrir Edición Habitación";
 }
 
-<h1>Modificar Habitación</h1>
-
-<h4>Actualice la información de la habitación:</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="EditarHabitacion" asp-controller="Habitacion">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            @*<div class="form-group">
-                <label asp-for="habitacionID" class="control-label">ID de Habitación:</label>
-                <input asp-for="habitacionID" class="form-control" readonly="readonly" />
-                <span asp-validation-for="habitacionID" class="text-danger"></span>
-            </div>*@
-            <div class="form-group">
-                <label asp-for="numeroHabitacion" class="control-label">Número de Habitación:</label>
-                <input asp-for="numeroHabitacion" class="form-control" />
-                <span asp-validation-for="numeroHabitacion" class="text-danger"></span>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+    <link rel="stylesheet" href="~/css/agregar_editar.css" />
+    <title>Modificar Habitación</title>
+</head>
+<body>
+    <h1>Modificar Habitación</h1>
+    <hr />
+    <div class="login-box">
+        <div class="login-box-body">
+            <p class="login-box-msg"><b>Actualice la información de la habitación</b></p>
+            <form asp-action="EditarHabitacion" asp-controller="Habitacion" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group has-feedback">
+                    <label asp-for="numeroHabitacion" class="control-label"></label>
+                    <input asp-for="numeroHabitacion" class="form-control" placeholder="Número de Habitación" />
+                    <span class="glyphicon glyphicon-home form-control-feedback"></span>
+                    <span asp-validation-for="numeroHabitacion" class="text-danger"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <label asp-for="tipoHabitacion" class="control-label"></label>
+                    <select asp-for="tipoHabitacion" class="form-control" asp-items="ViewBag.TipoHabitaciones"></select>
+                    <span class="glyphicon glyphicon-bed form-control-feedback"></span>
+                    <span asp-validation-for="tipoHabitacion" class="text-danger"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <label asp-for="capacidad" class="control-label"></label>
+                    <input asp-for="capacidad" class="form-control" placeholder="Capacidad" />
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                    <span asp-validation-for="capacidad" class="text-danger"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <label asp-for="precio" class="control-label"></label>
+                    <input asp-for="precio" class="form-control" placeholder="Precio" />
+                    <span class="glyphicon glyphicon-usd form-control-feedback"></span>
+                    <span asp-validation-for="precio" class="text-danger"></span>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-xs-12 text-center">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">Guardar</button>
+                    </div>
+                </div>
+            </form>
+            <div class="text-center mt-3">
+                <a asp-action="Index" asp-controller="Habitacion" class="text-center">Regresar a la lista</a>
             </div>
-            <div class="form-group">
-                <label asp-for="tipoHabitacion" class="control-label">Tipo de Habitación:</label>
-                <select asp-for="tipoHabitacion" class="form-control" asp-items="ViewBag.TipoHabitaciones"></select>
-                <span asp-validation-for="tipoHabitacion" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="capacidad" class="control-label">Capacidad:</label>
-                <input asp-for="capacidad" class="form-control" />
-                <span asp-validation-for="capacidad" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="precio" class="control-label">Precio:</label>
-                <input asp-for="precio" class="form-control" />
-                <span asp-validation-for="precio" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
-</div>
+    <!-- /.login-box -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    <script src="~/js/agregarusuario.js"></script>
+    <script>
+    $(document).ready(function () {
+        var successMessage = '@TempData["SuccessMessage"]';
+        var errorMessage = '@TempData["ErrorMessage"]';
 
-<div>
-    <a asp-action="Index" asp-controller="Habitacion">Regresar a la lista</a>
-</div>
+        mostrarMensajeUsuarioAgregado(successMessage, errorMessage);
+    });
+    </script>
+</body>
+</html>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

@@ -46,6 +46,7 @@ namespace ProyectoHotelFE.Controllers
         [HttpPost]
         public async Task<IActionResult> GuardarReserva(ReservaModel reserva)
         {
+            reserva.estadoID = 1; // Asignar el estado en 1 antes de guardar
             GestorConexionApis objgestor = new GestorConexionApis();
             var resultado = await objgestor.AgregarReserva(reserva);
             if (resultado)

@@ -4,54 +4,86 @@
     ViewData["Title"] = "Abrir Crear Tarjeta de Crédito";
 }
 
-<h1>Registrar Nueva Tarjeta de Crédito</h1>
-
-<h4>Ingrese la siguiente información:</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="GuardarTarjetaCredito" asp-controller="Tarjeta" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label class="control-label">ID Tarjeta:</label>
-                <input type="text" asp-for="tarjetaID" readonly="readonly" class="form-control" />
-                <span asp-validation-for="tarjetaID" class="text-danger"></span>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+    <link rel="stylesheet" href="~/css/agregar_editar.css" />
+    <title>Registrar Nueva Tarjeta de Crédito</title>
+</head>
+<body>
+    <h1>Registrar Nueva Tarjeta de Crédito</h1>
+    <hr />
+    <div class="login-box">
+        <div class="login-box-body">
+            <p class="login-box-msg"><b>Ingrese la siguiente información</b></p>
+            <form asp-action="GuardarTarjetaCredito" asp-controller="Tarjeta" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group has-feedback">
+                    <label class="control-label">ID Tarjeta:</label>
+                    <input type="text" asp-for="tarjetaID" readonly="readonly" class="form-control" />
+                    <span class="glyphicon glyphicon-tag form-control-feedback"></span>
+                    <span asp-validation-for="tarjetaID" class="text-danger"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <label asp-for="usuarioID" class="control-label"></label>
+                    <input asp-for="usuarioID" class="form-control" placeholder="ID Usuario" />
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                    <span asp-validation-for="usuarioID" class="text-danger"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <label asp-for="numeroTarjeta" class="control-label"></label>
+                    <input asp-for="numeroTarjeta" class="form-control" placeholder="Número de Tarjeta" />
+                    <span class="glyphicon glyphicon-credit-card form-control-feedback"></span>
+                    <span asp-validation-for="numeroTarjeta" class="text-danger"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <label asp-for="fechaExpiracion" class="control-label"></label>
+                    <input asp-for="fechaExpiracion" class="form-control" type="month" placeholder="Fecha de Expiración" />
+                    <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
+                    <span asp-validation-for="fechaExpiracion" class="text-danger"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <label asp-for="codigoSeguridad" class="control-label"></label>
+                    <input asp-for="codigoSeguridad" class="form-control" placeholder="Código de Seguridad" />
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                    <span asp-validation-for="codigoSeguridad" class="text-danger"></span>
+                </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="esValida" /> @Html.DisplayNameFor(model => model.esValida)
+                    </label>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-xs-12 text-center">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">Guardar</button>
+                    </div>
+                </div>
+            </form>
+            <div class="text-center mt-3">
+                <a asp-action="Index" asp-controller="Tarjeta" class="text-center">Regresar a listado de tarjetas</a>
             </div>
-            <div class="form-group">
-                <label asp-for="usuarioID" class="control-label">ID Usuario:</label>
-                <input asp-for="usuarioID" class="form-control" />
-                <span asp-validation-for="usuarioID" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="numeroTarjeta" class="control-label">Número de Tarjeta:</label>
-                <input asp-for="numeroTarjeta" class="form-control" />
-                <span asp-validation-for="numeroTarjeta" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="fechaExpiracion" class="control-label">Fecha de Expiración:</label>
-                <input asp-for="fechaExpiracion" class="form-control" type="month" />
-                <span asp-validation-for="fechaExpiracion" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="codigoSeguridad" class="control-label">Código de Seguridad:</label>
-                <input asp-for="codigoSeguridad" class="form-control" />
-                <span asp-validation-for="codigoSeguridad" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="esValida" /> @Html.DisplayNameFor(model => model.esValida)
-                </label>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
+        <!-- /.login-box-body -->
     </div>
-</div>
+    <!-- /.login-box -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    <script src="~/js/agregarusuario.js"></script>
+    <script>
+    $(document).ready(function () {
+        var successMessage = '@TempData["SuccessMessage"]';
+        var errorMessage = '@TempData["ErrorMessage"]';
 
-<div>
-    <a asp-action="Index" asp-controller="Tarjeta">Regresar a listado de tarjetas</a>
-</div>
+        mostrarMensajeUsuarioAgregado(successMessage, errorMessage);
+    });
+    </script>
+</body>
+</html>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

@@ -4,49 +4,81 @@
     ViewData["Title"] = "Abrir Edición Pago";
 }
 
-<h1>Modificación de un Pago</h1>
-
-<h4>Ingrese la información por actualizar:</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="EditarPago" asp-controller="Pago" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label class="control-label">ID Pago:</label>
-                <input type="text" asp-for="pagoID" readonly="readonly" class="form-control" />
-                <span asp-validation-for="pagoID" class="text-danger"></span>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+    <link rel="stylesheet" href="~/css/agregar_editar.css" />
+    <title>Modificar Pago</title>
+</head>
+<body>
+    <h1>Modificar Pago</h1>
+    <hr />
+    <div class="login-box">
+        <div class="login-box-body">
+            <p class="login-box-msg"><b>Ingrese la información por actualizar</b></p>
+            <form asp-action="EditarPago" asp-controller="Pago" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group has-feedback">
+                    <label class="control-label">ID Pago:</label>
+                    <input type="text" asp-for="pagoID" readonly="readonly" class="form-control" />
+                    <span class="glyphicon glyphicon-tag form-control-feedback"></span>
+                    <span asp-validation-for="pagoID" class="text-danger"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <label asp-for="reservaID" class="control-label"></label>
+                    <input asp-for="reservaID" class="form-control" placeholder="ID de la Reserva" />
+                    <span class="glyphicon glyphicon-tag form-control-feedback"></span>
+                    <span asp-validation-for="reservaID" class="text-danger"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <label asp-for="monto" class="control-label"></label>
+                    <input asp-for="monto" class="form-control" placeholder="Monto del Pago" />
+                    <span class="glyphicon glyphicon-usd form-control-feedback"></span>
+                    <span asp-validation-for="monto" class="text-danger"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <label asp-for="fechaPago" class="control-label"></label>
+                    <input asp-for="fechaPago" type="date" class="form-control" />
+                    <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
+                    <span asp-validation-for="fechaPago" class="text-danger"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <label asp-for="metodoPagoID" class="control-label"></label>
+                    <select asp-for="metodoPagoID" class="form-control" asp-items="ViewBag.MetodosPago"></select>
+                    <span class="glyphicon glyphicon-credit-card form-control-feedback"></span>
+                    <span asp-validation-for="metodoPagoID" class="text-danger"></span>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-xs-12 text-center">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">Guardar</button>
+                    </div>
+                </div>
+            </form>
+            <div class="text-center mt-3">
+                <a asp-action="Index" asp-controller="Pago" class="text-center">Regresar a listado de pagos</a>
             </div>
-            <div class="form-group">
-                <label asp-for="reservaID" class="control-label">ID de la Reserva:</label>
-                <input asp-for="reservaID" class="form-control" />
-                <span asp-validation-for="reservaID" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="monto" class="control-label">Monto del Pago:</label>
-                <input asp-for="monto" class="form-control" />
-                <span asp-validation-for="monto" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="fechaPago" class="control-label">Fecha del Pago:</label>
-                <input asp-for="fechaPago" type="date" class="form-control" />
-                <span asp-validation-for="fechaPago" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="metodoPagoID" class="control-label">Método de Pago:</label>
-                <select asp-for="metodoPagoID" class="form-control" asp-items="ViewBag.MetodosPago"></select>
-                <span asp-validation-for="metodoPagoID" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
+        <!-- /.login-box-body -->
     </div>
-</div>
+    <!-- /.login-box -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    <script src="~/js/agregarusuario.js"></script>
+    <script>
+    $(document).ready(function () {
+        var successMessage = '@TempData["SuccessMessage"]';
+        var errorMessage = '@TempData["ErrorMessage"]';
 
-<div>
-    <a asp-action="Index" asp-controller="Pago">Regresar a listado de pagos</a>
-</div>
+        mostrarMensajeUsuarioAgregado(successMessage, errorMessage);
+    });
+    </script>
+</body>
+</html>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
