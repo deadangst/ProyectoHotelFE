@@ -17,16 +17,25 @@ namespace ProyectoHotelFE.Controllers
             return View(resultado);
         }
 
-        public IActionResult AbrirCrearPago()
+        public IActionResult AbrirCrearPago(int reservaID, decimal monto, DateTime fechaFin)
         {
             ViewBag.MetodosPago = new List<SelectListItem>
+    {
+        new SelectListItem { Value = "1", Text = "Tarjeta de Crédito" },
+        new SelectListItem { Value = "2", Text = "Efectivo" },
+        new SelectListItem { Value = "3", Text = "Transferencia" }
+    };
+
+            var pagoModel = new PagoModel
             {
-                new SelectListItem { Value = "1", Text = "Tarjeta de Crédito" },
-                new SelectListItem { Value = "2", Text = "Efectivo" },
-                new SelectListItem { Value = "3", Text = "Transferencia" }
+                reservaID = reservaID,
+                monto = monto,
+                fechaPago = fechaFin
             };
-            return View();
+
+            return View(pagoModel);
         }
+
 
         [HttpGet]
         public async Task<IActionResult> AbrirEdicionPago(int pagoID)

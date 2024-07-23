@@ -13,30 +13,34 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
     <link rel="stylesheet" href="~/css/agregar_editar.css" />
     <title>Registrar Nuevo Pago</title>
+    <style>
+        .login-box {
+            width: 360px;
+            margin: 7% auto;
+        }
+    </style>
 </head>
 <body>
-    <h1>Registrar Nuevo Pago</h1>
-    <hr />
     <div class="login-box">
         <div class="login-box-body">
-            <p class="login-box-msg"><b>Ingrese la siguiente información</b></p>
-            <form asp-action="GuardarPago" asp-controller="Pago" method="post">
+            <p class="login-box-msg"><b>Registrar Pago de Reserva</b></p>
+            <form id="pagoForm" asp-action="GuardarPago" asp-controller="Pago" method="post">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group has-feedback">
                     <label asp-for="reservaID" class="control-label"></label>
-                    <input asp-for="reservaID" class="form-control" placeholder="ID de la Reserva" />
+                    <input asp-for="reservaID" class="form-control" readonly="readonly" />
                     <span class="glyphicon glyphicon-tag form-control-feedback"></span>
                     <span asp-validation-for="reservaID" class="text-danger"></span>
                 </div>
                 <div class="form-group has-feedback">
-                    <label asp-for="monto" class="control-label"></label>
-                    <input asp-for="monto" class="form-control" placeholder="Monto del Pago" />
+                    <label asp-for="monto" class="control-label">Monto del Pago</label>
+                    <input asp-for="monto" class="form-control" readonly="readonly" />
                     <span class="glyphicon glyphicon-usd form-control-feedback"></span>
                     <span asp-validation-for="monto" class="text-danger"></span>
                 </div>
                 <div class="form-group has-feedback">
-                    <label asp-for="fechaPago" class="control-label"></label>
-                    <input asp-for="fechaPago" type="date" class="form-control" />
+                    <label asp-for="fechaPago" class="control-label">Fecha del Pago</label>
+                    <input asp-for="fechaPago" type="date" class="form-control" readonly="readonly" />
                     <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
                     <span asp-validation-for="fechaPago" class="text-danger"></span>
                 </div>
@@ -48,28 +52,23 @@
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-xs-12 text-center">
-                        <button type="submit" class="btn btn-primary btn-block btn-flat">Crear</button>
+                        <button type="button" class="btn btn-primary btn-block btn-flat" onclick="confirmarPago()">Pagar</button>
                     </div>
                 </div>
             </form>
-            <div class="text-center mt-3">
-                <a asp-action="Index" asp-controller="Pago" class="text-center">Regresar a listado de pagos</a>
-            </div>
         </div>
-        <!-- /.login-box-body -->
     </div>
-    <!-- /.login-box -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-    <script src="~/js/agregarusuario.js"></script>
+    <script src="~/js/pago.js"></script> <!-- Asegúrate de tener este archivo en la ruta correcta -->
     <script>
-    $(document).ready(function () {
-        var successMessage = '@TempData["SuccessMessage"]';
-        var errorMessage = '@TempData["ErrorMessage"]';
+        $(document).ready(function () {
+            var successMessage = '@TempData["SuccessMessage"]';
+            var errorMessage = '@TempData["ErrorMessage"]';
 
-        mostrarMensajeUsuarioAgregado(successMessage, errorMessage);
-    });
+            mostrarMensajeUsuarioAgregado(successMessage, errorMessage);
+        });
     </script>
 </body>
 </html>
