@@ -1,58 +1,98 @@
 ﻿@model ProyectoHotelFE.Models.UsuarioModel
-
+@*Agregar Usuario Hotel*@
 @{
     ViewData["Title"] = "Abrir Crear Usuario";
 }
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+    <link rel="stylesheet" href="~/css/agregar_editar.css" />
+    <title>Crear Usuario</title>
+    <style>
+        .login-box {
+            width: 360px;
+            margin: 7% auto;
+        }
+    </style>
+</head>
 
-<h1>Registrar Nuevo Usuario</h1>
-
-<h4>Ingrese la siguiente información:</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="GuardarUsuario" asp-controller="Hotel" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="nombre" class="control-label">Digite el nombre del usuario:</label>
-                <input asp-for="nombre" class="form-control" />
-                <span asp-validation-for="nombre" class="text-danger"></span>
+<body>
+    <h1>Crear Nuevo Usuario</h1>
+    <hr />
+    <div class="login-box">
+        <div class="login-box-body">
+            <p class="login-box-msg"><b>Registrar Nuevo Usuario</b></p>
+            <form asp-action="GuardarUsuario" asp-controller="Hotel" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group has-feedback">
+                    <label asp-for="nombre" class="control-label"></label>
+                    <input asp-for="nombre" class="form-control" placeholder="Nombre" />
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                    <span asp-validation-for="nombre" class="text-danger"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <label asp-for="apellido" class="control-label"></label>
+                    <input asp-for="apellido" class="form-control" placeholder="Apellido" />
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                    <span asp-validation-for="apellido" class="text-danger"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <label asp-for="email" class="control-label"></label>
+                    <input asp-for="email" class="form-control" placeholder="ejemplo@correo.com" />
+                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                    <span asp-validation-for="email" class="text-danger"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <label asp-for="telefono" class="control-label"></label>
+                    <input asp-for="telefono" class="form-control" placeholder="Teléfono" />
+                    <span class="glyphicon glyphicon-earphone form-control-feedback"></span>
+                    <span asp-validation-for="telefono" class="text-danger"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <label asp-for="tipoUsuarioID" class="control-label"></label>
+                    <select asp-for="tipoUsuarioID" class="form-control" asp-items="ViewBag.TipoUsuarios"></select>
+                    <span asp-validation-for="tipoUsuarioID" class="text-danger"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <label asp-for="passwordHash" class="control-label"></label>
+                    <input asp-for="passwordHash" type="password" class="form-control" placeholder="Debe digitar una clave segura" />
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                    <span asp-validation-for="passwordHash" class="text-danger"></span>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-xs-12 text-center">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">Registrar</button>
+                    </div>
+                </div>
+            </form>
+            <div class="text-center mt-3">
+                <a asp-action="Index" asp-controller="Hotel" class="text-center">Regresar a listado de usuarios</a>
             </div>
-            <div class="form-group">
-                <label asp-for="apellido" class="control-label">Digite el apellido del usuario:</label>
-                <input asp-for="apellido" class="form-control" />
-                <span asp-validation-for="apellido" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="email" class="control-label">Digite el email del usuario:</label>
-                <input asp-for="email" class="form-control" />
-                <span asp-validation-for="email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="telefono" class="control-label">Digite el teléfono del usuario:</label>
-                <input asp-for="telefono" class="form-control" />
-                <span asp-validation-for="telefono" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="tipoUsuarioID" class="control-label">Seleccione el tipo de usuario:</label>
-                <select asp-for="tipoUsuarioID" class="form-control" asp-items="ViewBag.TipoUsuarios"></select>
-                <span asp-validation-for="tipoUsuarioID" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="passwordHash" class="control-label">Digite la contraseña del usuario:</label>
-                <input asp-for="passwordHash" type="password" class="form-control" />
-                <span asp-validation-for="passwordHash" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
+        <!-- /.login-box-body -->
     </div>
-</div>
+    <!-- /.login-box -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    <script src="~/js/agregarusuariohotel.js"></script>
+    <script>
+    $(document).ready(function () {
+        var successMessage = '@TempData["SuccessMessage"]';
+        var errorMessage = '@TempData["ErrorMessage"]';
 
-<div>
-    <a asp-action="Index" asp-controller="Hotel">Regresar a listado de usuarios</a>
-</div>
-
+        mostrarMensajeUsuarioAgregadoHotel(successMessage, errorMessage);
+    });
+    </script>
+    <div>
+        <a asp-action="Index" asp-controller="Hotel">Regresar a listado de usuarios</a>
+    </div>
+</body>
+</html>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

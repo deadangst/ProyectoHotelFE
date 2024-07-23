@@ -19,44 +19,93 @@
     </div>
 }
 
-<p>
-    <a asp-action="AbrirCrearHabitacion" asp-controller="Habitacion" class="btn btn-primary">Crear Nueva Habitación</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Habitación #</th>
-            <th>Tipo</th>
-            <th>Capacidad</th>
-            <th>Precio</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.habitacionID)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.numeroHabitacion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.tipoHabitacion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.capacidad)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.precio)
-                </td>
-                <td>
-                    @Html.ActionLink("Editar", "AbrirEdicionHabitacion", new { habitacionID = item.habitacionID }, new { @class = "btn btn-warning" }) |
-                    @Html.ActionLink("Eliminar", "BorrarHabitacion", new { habitacionID = item.habitacionID }, new { @class = "btn btn-danger" })
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+<!-- Contenido Principal -->
+<section class="content">
+    <div class="row">
+        <div class="col-lg-12 d-flex justify-content-between align-items-center mb-3">
+            <div>
+                <a asp-action="AbrirCrearHabitacion" asp-controller="Habitacion" class="btn btn-success mb-3">
+                    <i class="fa fa-plus"></i> Crear Nueva Habitación
+                </a>
+            </div>
+            <div>
+                <form asp-action="FiltrarListaHabitaciones" method="get" class="form-inline">
+                    <input type="text" name="TipoHabitacionBuscar" class="form-control mr-2" placeholder="Buscar Tipo de Habitación..." />
+                    <button type="submit" class="btn btn-primary">Buscar</button>
+                </form>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div class="box box-primary">
+                <div class="box-body">
+                    <div class="table-responsive">
+                        <div class="container p-3 mb-3 bg-light rounded" style="width: 100%;">
+                            <!-- Contenedor con fondo sólido -->
+                            <table id="habitacionesTable" class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Habitación #</th>
+                                        <th>Tipo</th>
+                                        <th>Capacidad</th>
+                                        <th>Precio</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@Html.DisplayFor(modelItem => item.habitacionID)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.numeroHabitacion)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.tipoHabitacion)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.capacidad)</td>
+                                            <td>@($"${item.precio}")</td>
+                                            <td>
+                                                <a asp-action="AbrirEdicionHabitacion" asp-route-habitacionID="@item.habitacionID" class="btn btn-default btn-xs">
+                                                    <i class="fa fa-pencil"></i>
+                                                </a>
+                                                <a href="javascript:void(0);" onclick="confirmarEliminacion('@Url.Action("BorrarHabitacion", new { habitacionID = item.habitacionID })')" class="btn btn-danger btn-xs" style="margin-left:2px">
+                                                    <i class="fa fa-trash"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+    <link href="https://cdn.datatables.net/v/dt/dt-2.1.0/datatables.min.css" rel="stylesheet">
+    <script src="https://cdn.datatables.net/v/dt/dt-2.1.0/datatables.min.js"></script>
+    <script src="~/js/scripts.js"></script> <!-- Ruta del archivo scripts.js con el mensaje compartido de borrado -->
+    <script>
+        $(document).ready(function () {
+            $('#habitacionesTable').DataTable({
+                "pageLength": 10, // Número de entradas mostradas por página
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_ entradas por página",
+                    "zeroRecords": "No se encontraron resultados",
+                    "info": "Mostrando página _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay registros disponibles",
+                    "infoFiltered": "(filtrado de _MAX_ registros totales)",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Último",
+                        "next": " > Siguiente",
+                        "previous": "Anterior < "
+                    }
+                },
+                "dom": '<"top"l>rt<"bottom"ip><"clear">' // Controla la disposición de los elementos en la tabla y elimina el search
+            });
+        });
+    </script>
+}

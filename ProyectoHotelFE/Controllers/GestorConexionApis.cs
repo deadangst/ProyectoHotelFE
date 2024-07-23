@@ -32,7 +32,8 @@ namespace ProyectoHotelFE.Controllers
 
         private void EstablecerDatosBaseConexion()
         {
-            ConexionApis.BaseAddress = new Uri("http://localhost:84/");
+            //ConexionApis.BaseAddress = new Uri("http://localhost:84/");
+            ConexionApis.BaseAddress = new Uri("http://localhost:48400/");
             ConexionApis.DefaultRequestHeaders.Accept.Clear();
             ConexionApis.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
@@ -66,6 +67,40 @@ namespace ProyectoHotelFE.Controllers
             HttpResponseMessage resultadoconsumo = await ConexionApis.PostAsJsonAsync(rutaAPI, usuario);
             return resultadoconsumo.IsSuccessStatusCode;
         }
+
+        //public async Task<List<PerfilModel>> AutorizacionesPorUsuarios(UsuarioModel P_Entidad)
+        //{
+        //    List<PerfilModel> listaresultado = new List<PerfilModel>();
+        //    string rutaAPI = @"api/Hotel/AutorizacionesPorUsuarios";
+
+        //    ConexionApis.DefaultRequestHeaders.Add("pEmail", P_Entidad.email);
+
+        //    HttpResponseMessage resultadoconsumo = await ConexionApis.GetAsync(rutaAPI);
+        //    if (resultadoconsumo.IsSuccessStatusCode)
+        //    {
+        //        string jsonstring = await resultadoconsumo.Content.ReadAsStringAsync();
+        //        listaresultado = JsonSerializer.Deserialize<List<PerfilModel>>(jsonstring);
+        //    }
+
+        //    return listaresultado;
+        //}
+        public async Task<List<PerfilModel>> AutorizacionesPorUsuarios(UsuarioModel P_Entidad)
+        {
+            List<PerfilModel> listaresultado = new List<PerfilModel>();
+            string rutaAPI = @"api/Hotel/AutorizacionesPorUsuarios";
+
+            ConexionApis.DefaultRequestHeaders.Add("pEmail", P_Entidad.email);
+
+            HttpResponseMessage resultadoconsumo = await ConexionApis.GetAsync(rutaAPI);
+            if (resultadoconsumo.IsSuccessStatusCode)
+            {
+                string jsonstring = await resultadoconsumo.Content.ReadAsStringAsync();
+                listaresultado = JsonSerializer.Deserialize<List<PerfilModel>>(jsonstring);
+            }
+
+            return listaresultado;
+        }
+
 
         public async Task<bool> ModificarUsuario(UsuarioModel usuario)
         {

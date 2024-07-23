@@ -1,0 +1,53 @@
+﻿/* custom.css */
+body { /* Aplica la fuente Roboto a todo el cuerpo del documento */
+    font-family: 'Roboto', sans-serif;
+}
+
+.sidebar { /* Estilo para el menú de navegación lateral */
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #343a40; /* Fondo oscuro */
+    overflow-x: hidden;
+    padding-top: 20px;
+    color: white; /* Texto blanco */
+}
+
+    .sidebar h2 { /* Estilo para el título del menú lateral */
+        color: white; /* Texto blanco */
+        padding-left: 25px;
+    }
+
+    .sidebar a { /* Estilo para los enlaces del menú lateral */
+        padding: 15px 25px;
+        text-decoration: none;
+        font-size: 18px;
+        color: #cfd8dc; /* Texto gris claro */
+        display: block;
+    }
+
+        .sidebar a:hover { /* Efecto hover para los enlaces del menú lateral */
+            background-color: #495057; /* Fondo gris oscuro al hacer hover */
+            color: #ffffff; /* Texto blanco al hacer hover */
+        }
+
+.main-content { /* Estilo para el contenido principal */
+    margin-left: 260px; /* Deja espacio para el menú lateral */
+    padding: 20px;
+}
+
+.navbar, .footer { /* Estilo para la barra de navegación y el pie de página */
+    background-color: #343a40; /* Fondo oscuro */
+    color: white; /* Texto blanco */
+}
+
+    .navbar .navbar-brand, .navbar .nav-link, .footer a { /* Estilo para los enlaces en la barra de navegación y pie de página */
+        color: white; /* Texto blanco */
+    }
+
+        .navbar .nav-link:hover { /* Efecto hover para los enlaces de navegación */
+            color: #cfd8dc; /* Texto gris claro al hacer hover */
+        }
