@@ -9,7 +9,7 @@ namespace ProyectoHotelFE.Models
         [Display(Name = "ID")]
         public int pagoID { get; set; }
         [Required]
-        [Display(Name = "Reserva ID")]
+        [Display(Name = "Nº de Reserva")]
         public int reservaID { get; set; }
         [Required]
         [Display(Name = "Monto")]

@@ -55,7 +55,7 @@ namespace ProyectoHotelFE.Controllers
             }
             else
             {
-                TempData["ErrorMessage"] = "Error al agregar la reserva.";
+                TempData["ErrorMessage"] = "La habitación no está disponible en el rango de fechas seleccionado.";
             }
             return RedirectToAction("Index");
         }

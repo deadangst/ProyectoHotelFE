@@ -31,6 +31,23 @@ namespace ProyectoHotelFE.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> GetPrecioHabitacion(int habitacionID)
+        {
+            GestorConexionApis objgestor = new GestorConexionApis();
+            List<HabitacionModel> lstresultado = await objgestor.ListarHabitaciones();
+            HabitacionModel encontrado = lstresultado.FirstOrDefault(h => h.habitacionID == habitacionID);
+
+            if (encontrado != null)
+            {
+                return Json(encontrado.precio);
+            }
+            return Json(0);
+        }
+
+
+
+
+        [HttpGet]
         public async Task<IActionResult> AbrirEdicionHabitacion(int habitacionID)
         {
             GestorConexionApis objgestor = new GestorConexionApis();

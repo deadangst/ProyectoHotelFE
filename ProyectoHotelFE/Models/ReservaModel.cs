@@ -7,10 +7,10 @@ namespace ProyectoHotelFE.Models
     {
         #region Propiedades
 
-        [Display(Name = "ID")]
+        [Display(Name = "Nº Reserva")]
         public int reservaID { get; set; }
         [Required]
-        [Display(Name = "Habitación #")]
+        [Display(Name = "Nº de Habitación")]
         public int habitacionID { get; set; }
         [Required]
         [Display(Name = "Usuario")]
@@ -19,10 +19,10 @@ namespace ProyectoHotelFE.Models
         [Display(Name = "ID de Tarjeta")]
         public int tarjetaID { get; set; }
         [Required]
-        [Display(Name = "Fecha Inicio")]
+        [Display(Name = "Check In")]
         public DateTime fechaInicio { get; set; }
         [Required]
-        [Display(Name = "Fecha Fin")]
+        [Display(Name = "Check Out")]
         public DateTime fechaFin { get; set; }
         [Required]
         [Display(Name = "Monto Total")]
