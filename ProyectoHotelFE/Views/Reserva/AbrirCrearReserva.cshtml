@@ -24,7 +24,7 @@
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group has-feedback">
                     <label asp-for="habitacionID" class="control-label"></label>
-                    <input asp-for="habitacionID" class="form-control" placeholder="ID de la Habitación" />
+                    <input asp-for="habitacionID" class="form-control" placeholder="ID de la Habitación" id="habitacionID" />
                     <span class="glyphicon glyphicon-tag form-control-feedback"></span>
                     <span asp-validation-for="habitacionID" class="text-danger"></span>
                 </div>
@@ -42,19 +42,19 @@
                 </div>
                 <div class="form-group has-feedback">
                     <label asp-for="fechaInicio" class="control-label"></label>
-                    <input asp-for="fechaInicio" type="date" class="form-control" />
+                    <input asp-for="fechaInicio" type="date" class="form-control" id="fechaInicio" />
                     <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
                     <span asp-validation-for="fechaInicio" class="text-danger"></span>
                 </div>
                 <div class="form-group has-feedback">
                     <label asp-for="fechaFin" class="control-label"></label>
-                    <input asp-for="fechaFin" type="date" class="form-control" />
+                    <input asp-for="fechaFin" type="date" class="form-control" id="fechaFin" />
                     <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
                     <span asp-validation-for="fechaFin" class="text-danger"></span>
                 </div>
                 <div class="form-group has-feedback">
                     <label asp-for="montoTotal" class="control-label"></label>
-                    <input asp-for="montoTotal" class="form-control" placeholder="Monto Total" />
+                    <input asp-for="montoTotal" class="form-control" placeholder="Monto Total" id="montoTotal" />
                     <span class="glyphicon glyphicon-usd form-control-feedback"></span>
                     <span asp-validation-for="montoTotal" class="text-danger"></span>
                 </div>
@@ -76,6 +76,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
     <script src="~/js/agregarusuario.js"></script>
+    <script src="~/js/calculohabitacion.js"></script>
     <script>
     $(document).ready(function () {
         var successMessage = '@TempData["SuccessMessage"]';
