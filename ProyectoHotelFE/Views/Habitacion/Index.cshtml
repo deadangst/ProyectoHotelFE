@@ -45,7 +45,7 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Habitación #</th>
+                                        <th>Nº Habitación</th>
                                         <th>Tipo</th>
                                         <th>Capacidad</th>
                                         <th>Precio</th>
@@ -86,26 +86,11 @@
     @await Html.PartialAsync("_ValidationScriptsPartial")
     <link href="https://cdn.datatables.net/v/dt/dt-2.1.0/datatables.min.css" rel="stylesheet">
     <script src="https://cdn.datatables.net/v/dt/dt-2.1.0/datatables.min.js"></script>
-    <script src="~/js/scripts.js"></script> <!-- Ruta del archivo scripts.js con el mensaje compartido de borrado -->
+    <script src="~/js/scripts.js"></script>
+    <script src="~/js/datatable.js"></script>
+    <!-- Incluye cualquier script nuevo aquí -->
     <script>
-        $(document).ready(function () {
-            $('#habitacionesTable').DataTable({
-                "pageLength": 10, // Número de entradas mostradas por página
-                "language": {
-                    "lengthMenu": "Mostrar _MENU_ entradas por página",
-                    "zeroRecords": "No se encontraron resultados",
-                    "info": "Mostrando página _PAGE_ de _PAGES_",
-                    "infoEmpty": "No hay registros disponibles",
-                    "infoFiltered": "(filtrado de _MAX_ registros totales)",
-                    "paginate": {
-                        "first": "Primero",
-                        "last": "Último",
-                        "next": " > Siguiente",
-                        "previous": "Anterior < "
-                    }
-                },
-                "dom": '<"top"l>rt<"bottom"ip><"clear">' // Controla la disposición de los elementos en la tabla y elimina el search
-            });
-        });
+        initializeDataTable('#habitacionesTable');
     </script>
+    
 }

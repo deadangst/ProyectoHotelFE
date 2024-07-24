@@ -24,3 +24,17 @@
         confirmarEliminacion(url);
     }
 }
+
+function confirmarEliminacion(url) {
+    swal({
+        title: "Confirmación",
+        text: "¿Estás seguro de que deseas eliminar esta reserva?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#dd4b39",
+        confirmButtonText: "Sí, eliminar",
+        closeOnConfirm: true
+    }, function () {
+        window.location.href = url;
+    });
+}
